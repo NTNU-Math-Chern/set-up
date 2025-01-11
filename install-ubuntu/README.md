@@ -1,8 +1,8 @@
-## :gear: Ubuntu
+## :octopus: Ubuntu
 Instructions can be found [here](https://ubuntu.com/download/desktop#how-to-install) (for latest Ubuntu).
 We use [Ubuntu 22.04](https://ubuntu.com/download/alternative-downloads).
 
-- [:gear: Ubuntu](#gear-ubuntu)
+- [:octopus: Ubuntu](#octopus-ubuntu)
   - [:teddy\_bear: Prerequisites](#teddy_bear-prerequisites)
   - [:books: Install steps](#books-install-steps)
   - [:nauseated\_face: Potential problems](#nauseated_face-potential-problems)
@@ -32,6 +32,6 @@ sudo apt upgrade
 
 (TBD)
 
-**BitLocker*8
+**BitLocker**
 
 (TBD)
