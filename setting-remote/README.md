@@ -1,4 +1,4 @@
-## :globe_with_meridians: Ubuntu
+## :globe_with_meridians: Remote settings
 
 ```shell
 sudo apt install -y openssh-server
