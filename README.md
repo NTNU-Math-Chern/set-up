@@ -7,6 +7,7 @@ Some setting notes for `computer@math.ntnu`.
     - [:gear: Basic set-up](#gear-basic-set-up)
     - [:cactus: Conda \& Jupyter](#cactus-conda--jupyter)
     - [:fire\_engine: Cuda \& PyTorch](#fire_engine-cuda--pytorch)
+    - [:globe\_with\_meridians: Remote settings](#globe_with_meridians-remote-settings)
 
 ### :octopus: [Ubuntu](/install-ubuntu/)
 - Ubuntu 22.04
