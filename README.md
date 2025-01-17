@@ -9,7 +9,7 @@ Some setting notes for `computer@math.ntnu`.
     - [:fire\_engine: Cuda \& PyTorch](#fire_engine-cuda--pytorch)
 
 ### :octopus: [Ubuntu](/install-ubuntu/)
-- Ubuntu install guide.
+- Ubuntu 22.04
 
 ### :gear: [Basic set-up](/install-basic/)
 - Build tools
@@ -25,3 +25,7 @@ Some setting notes for `computer@math.ntnu`.
 - Nvidia driver
 - CUDA Toolkit
 - PyTorch
+
+### :globe_with_meridians: Remote settings
+- SSH
+- Router

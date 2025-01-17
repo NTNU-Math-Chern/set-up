@@ -42,6 +42,11 @@ git config --global user.name "ChernLab"
 git config --global user.email "chernlab.math.ntnu@gmail.com"
 ```
 
+Others
+```shell
+sudo apt install -y vim net-tools
+```
+
 Check important installs
 ```shell
 gcc --version
