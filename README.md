@@ -27,6 +27,6 @@ Some setting notes for `computer@math.ntnu`.
 - CUDA Toolkit
 - PyTorch
 
-### :globe_with_meridians: [Remote settings](/set-up/)
+### :globe_with_meridians: [Remote settings](/setting-remote/)
 - SSH
 - Router
