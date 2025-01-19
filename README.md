@@ -8,6 +8,7 @@ Some setting notes for `computer@math.ntnu`.
     - [:cactus: Conda \& Jupyter](#cactus-conda--jupyter)
     - [:fire\_engine: Cuda \& PyTorch](#fire_engine-cuda--pytorch)
     - [:globe\_with\_meridians: Remote settings](#globe_with_meridians-remote-settings)
+    - [:battery:Oh My Zsh](#batteryoh-my-zsh)
 
 ### :octopus: [Ubuntu](/install-ubuntu/)
 - Ubuntu 22.04
@@ -30,3 +31,7 @@ Some setting notes for `computer@math.ntnu`.
 ### :globe_with_meridians: [Remote settings](/setting-remote/)
 - SSH
 - Router
+
+### :battery:[Oh My Zsh](/setting-zsh/)
+- zsh
+- oh my zsh plugins
