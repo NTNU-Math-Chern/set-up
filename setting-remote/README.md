@@ -52,3 +52,33 @@ cert: false
 If you are using a router, go to **DHCP settings** or **Address Reservation** and assign a `<ROUTER_STATIC_IP>` to your host computer. Then, go to the **Port Forwarding** or **NAT** to add a port on `<ROUTER_STATIC_IP>` with
 - external port: `<PORT>` (router to host)
 - internel port: `<PORT>` (code-server port)
+
+### systemd service
+The following is to auto-run `code-server` at boot on Ubuntu by setting it up as a systemd service.
+```shell
+sudo touch /etc/systemd/system/code-server.service
+sudo vim /etc/systemd/system/code-server.service
+```
+Write this in your service file
+```
+[Unit]
+Description=Code-Server
+After=network.target
+
+[Service]
+Type=simple
+User=chern
+ExecStart=/usr/bin/code-server
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
+```
+
+Then run 
+```shell
+sudo systemctl enable code-server
+sudo reboot
+```
+
+You should be able to access `code-server` after booting.

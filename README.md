@@ -32,6 +32,7 @@ Some setting notes for `computer@math.ntnu`.
 - SSH
 - Router
 - VSCode server
+- systemd service
 
 ### :battery:[Oh My Zsh](/setting-zsh/)
 - zsh
