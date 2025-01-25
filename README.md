@@ -31,6 +31,7 @@ Some setting notes for `computer@math.ntnu`.
 ### :globe_with_meridians: [Remote settings](/setting-remote/)
 - SSH
 - Router
+- VSCode server
 
 ### :battery:[Oh My Zsh](/setting-zsh/)
 - zsh

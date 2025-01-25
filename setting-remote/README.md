@@ -1,5 +1,7 @@
 ## :globe_with_meridians: Remote settings
 
+### SSH
+
 ```shell
 sudo apt install -y openssh-server
 sudo service ssh start
@@ -20,4 +22,33 @@ If you are using a router, go to **DHCP settings** or **Address Reservation** an
 ssh <USER>@<STATIC_IP> -p <PORT>
 ```
 
-> (rare case) I used SSH before on the same host computer, I re-installed it, and got some error while setting SSH again. The reason is there is some old information in the SSH configuration, you need to clean it.
+> (rare case) I used SSH before on the same host computer, I re-installed it, and got some error while setting SSH again. The reason is that there is some old information in the SSH configuration, you need to clean it.
+
+### VSCode server
+
+```shell
+curl -fsSL https://code-server.dev/install.sh | sh
+```
+
+Generate a configuration file by running `code-server`. Quit it. Modify the configuration file:
+```shell
+vim ~/.config/code-server/config.yaml
+```
+You should see this
+```
+bind-addr: 127.0.0.1:8080  
+auth: password       
+password: <RANDOM_PASSWORD> 
+cert: false 
+```
+Change it to
+```
+bind-addr: 0.0.0.0:<PORT>  
+auth: password       
+password: <CUSTOM_PASSWORD> 
+cert: false 
+```
+
+If you are using a router, go to **DHCP settings** or **Address Reservation** and assign a `<ROUTER_STATIC_IP>` to your host computer. Then, go to the **Port Forwarding** or **NAT** to add a port on `<ROUTER_STATIC_IP>` with
+- external port: `<PORT>` (router to host)
+- internel port: `<PORT>` (code-server port)
