@@ -4,6 +4,7 @@
   - [:teddy\_bear: Prerequisites](#teddy_bear-prerequisites)
   - [:car: Nvidia Driver](#car-nvidia-driver)
   - [:wrench: Cuda toolkit](#wrench-cuda-toolkit)
+  - [:wrench: Multi-version Cuda installation and switching](#wrench-multi-version-cuda-installation-and-switching)
   - [:fire: PyTorch](#fire-pytorch)
 
 
@@ -48,6 +49,20 @@ sudo apt install -y nvidia-cuda-toolkit
 sudo reboot
 
 nvcc --version
+```
+### :wrench: Multi-version Cuda installation and switching
+
+Download the version of CUDA you need from [here](https://developer.nvidia.com/cuda-toolkit-archive). It is recommended to install it using the **runfile** method. For example, to install CUDA 11.8, run:
+```
+wget https://developer.download.nvidia.com/compute/cuda/11.8.0/local_installers/cuda_11.8.0_520.61.05_linux.run
+sudo sh cuda_11.8.0_520.61.05_linux.run
+```
+Then switch it by
+```shell
+#CUDA 11.8 
+export CUDA_HOME=/usr/local/cuda-11.8
+export PATH=$CUDA_HOME/bin:$PATH
+export LD_LIBRARY_PATH=$CUDA_HOME/lib64:$LD_LIBRARY_PATH
 ```
 
 ### :fire: PyTorch
