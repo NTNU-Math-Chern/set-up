@@ -86,24 +86,32 @@ For simplicity, we define functions to switch CUDA version more easily. Put the 
 # Default CUDA version
 export CUDA_DEFAULT_VERSION=12.6
 
-# Fuction to check available CUDA versions
+# Function to list available CUDA versions
 cuda_list() {
-    ls /usr/local | grep cuda-
+    ls /usr/local | grep -oP 'cuda-\K[\d.]+'
 }
 
-# Function to switch CUDA versions
+# Function to switch CUDA versions (with validation)
 cuda_switch() {
     if [ -z "$1" ]; then
-        echo "Usage: switch_cuda <version>"
+        echo "Please specify a version: cuda_switch <VERSION>"
         return 1
     fi
+
+    # Check if the requested CUDA version is available
+    if ! cuda_list | grep -q "^$1$"; then
+        echo "Error: CUDA $1 is not installed. Available versions:"
+        cuda_list
+        return 1
+    fi
+
     export CUDA_HOME="/usr/local/cuda-$1"
     export PATH="$CUDA_HOME/bin:$PATH"
     export LD_LIBRARY_PATH="$CUDA_HOME/lib64:$LD_LIBRARY_PATH"
 
-    # Print only if NOT running in silent mode
+    # Print message only if NOT running in silent mode
     if [ "$2" != "silent" ]; then
-        echo "Switch to CUDA $1"
+        echo "Switched to CUDA $1"
     fi
 }
 
