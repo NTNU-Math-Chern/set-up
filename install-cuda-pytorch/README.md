@@ -4,7 +4,7 @@
   - [:teddy\_bear: Prerequisites](#teddy_bear-prerequisites)
   - [:car: Nvidia Driver](#car-nvidia-driver)
   - [:wrench: Cuda toolkit](#wrench-cuda-toolkit)
-  - [:wrench: Multi-version Cuda installation and switching](#wrench-multi-version-cuda-installation-and-switching)
+  - [:bricks: Multi-version CUDA](#bricks-multi-version-cuda)
   - [:fire: PyTorch](#fire-pytorch)
 
 
@@ -37,22 +37,35 @@ sudo reboot
 nvidia-smi
 ```
 
+> This CUDA version you see here is the maximum version supported by the driver.
+
 ### :wrench: Cuda toolkit
 
 ```shell
 nvcc --version # skip this step if installed
 ```
 
-install cuda toolkit
+Since we want to use PyTorch, first check the latest version (or any version you want) [here](https://pytorch.org/get-started/locally/).
+Then install cuda toolkit [here](https://developer.nvidia.com/cuda-toolkit-archive), we use CUDA 12.6. 
+It is recommended to install it using the **runfile** method, note that don't select install driver again.
 ```shell
-sudo apt install -y nvidia-cuda-toolkit
-sudo reboot
+wget https://developer.download.nvidia.com/compute/cuda/12.6.3/local_installers/cuda_12.6.3_560.35.05_linux.run
+sudo sh cuda_12.6.3_560.35.05_linux.run
+```
+Add CUDA path (or add it to your shell configuration file, we will give instructions [below](#bricks-multi-version-cuda)).
+```shell
+export CUDA_HOME=/usr/local/cuda-12.6
+export PATH=$CUDA_HOME/bin:$PATH
+export LD_LIBRARY_PATH=$CUDA_HOME/lib64:$LD_LIBRARY_PATH
 
 nvcc --version
 ```
-### :wrench: Multi-version Cuda installation and switching
 
-Download the version of CUDA you need from [here](https://developer.nvidia.com/cuda-toolkit-archive). It is recommended to install it using the **runfile** method. For example, to install CUDA 11.8, run:
+> This CUDA version you see here is the version we are using.
+
+### :bricks: Multi-version CUDA
+For example, we install CUDA 11.8.
+It is recommended to install it using the **runfile** method, note that don't select install driver again.
 ```
 wget https://developer.download.nvidia.com/compute/cuda/11.8.0/local_installers/cuda_11.8.0_520.61.05_linux.run
 sudo sh cuda_11.8.0_520.61.05_linux.run
@@ -65,6 +78,43 @@ export PATH=$CUDA_HOME/bin:$PATH
 export LD_LIBRARY_PATH=$CUDA_HOME/lib64:$LD_LIBRARY_PATH
 ```
 
+**Switch CUDA**
+
+For simplicity, we define functions to switch CUDA version more easily. Put the following script in your shell configuration file (e.g., default `vim ~/.bashrc` or we use `vim ~/.zshrc`).
+
+```
+# Default CUDA version
+export CUDA_DEFAULT_VERSION=12.6
+
+# Fuction to check available CUDA versions
+cuda_list() {
+    ls /usr/local | grep cuda-
+}
+
+# Function to switch CUDA versions
+cuda_switch() {
+    if [ -z "$1" ]; then
+        echo "Usage: switch_cuda <version>"
+        return 1
+    fi
+    export CUDA_HOME="/usr/local/cuda-$1"
+    export PATH="$CUDA_HOME/bin:$PATH"
+    export LD_LIBRARY_PATH="$CUDA_HOME/lib64:$LD_LIBRARY_PATH"
+
+    # Print only if NOT running in silent mode
+    if [ "$2" != "silent" ]; then
+        echo "Switch to CUDA $1"
+    fi
+}
+
+# Set default CUDA version at startup
+cuda_switch $CUDA_DEFAULT_VERSION silent
+```
+
+Restart shell or reload shell by `source ~/.bashrc`. We added two functions:
+- `cuda_list`: Print available CUDA versions in `/usr/local/`.
+- `cuda_switch <VERSION>`: Switch to CUDA `<VERSION>`.
+
 ### :fire: PyTorch
 
 We test it on conda base environment.
@@ -72,21 +122,20 @@ We test it on conda base environment.
 conda activate base
 ```
 
-Install PyTorch with CUDA from [here](https://pytorch.org/get-started/locally/). If you follow the instructions above, you should be able to just install the lastest version.
+Install PyTorch with CUDA from [here](https://pytorch.org/get-started/locally/). If you follow the instructions above, you should install CUDA 12.6 version.
 
 ```shell
-# CUDA 12.4 (latest version)
-pip3 install torch torchvision torchaudio
-# CUDA 12.1
-pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu121
+# CUDA 12.6 
+pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu126
 # CUDA 11.8
-pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
+# pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
 ```
 
 Run python and check if successfully installed.
-```shell
+```python
 import torch
-print(torch.cuda.is_available())
-# print(torch.cuda.get_device_name(0))
+print(torch.version.cuda) # 12.6
+print(torch.cuda.is_available()) # true
+print(torch.cuda.get_device_name(0))
 ```
 
