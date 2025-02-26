@@ -8,7 +8,7 @@ sudo apt upgrade
 
 Build tools
 ```shell
-sudo apt instsall -y build-essential cmake gdb
+sudo apt install -y build-essential cmake gdb
 
 # commonly used dependencies
 sudo apt install -y libeigen3-dev libboost-all-dev libomp-dev

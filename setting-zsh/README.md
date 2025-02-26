@@ -6,6 +6,14 @@ chsh -s $(which zsh)
 echo $SHELL # check current shell
 ```
 
+Nerdfonts
+```shell
+wget https://github.com/ryanoasis/nerd-fonts/releases/latest/download/Meslo.zip
+unzip Meslo.zip -d ~/.fonts
+rm Meslo.zip
+fc-cache -fv # re-open gnome, change font in preference
+```
+
 Might need to log out and back in for `zsh` to apply.
 
 ```shell
