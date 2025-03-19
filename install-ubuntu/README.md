@@ -28,6 +28,25 @@ sudo apt upgrade
 
 ### :nauseated_face: Potential problems
 
+**Graphic drivers**
+If you get a black screen while booting Ubuntu installer, you might need to do the following steps.
+During the GRUB boot menu (the screen that says "Try Ubuntu" or "Install Ubuntu"), press 
+`e` to edit boot parameters. Add `nomodeset` after `quite splash`:
+```sh
+linux /casper/vmlinuz ... quiet splash nomodeset
+```
+
+After installing Ubuntu, while rebooting after removed USB, you might still occur this problem. Press `shift` (possibly other keys, search for how to access the GRUB menu) after you reboot to access the GRUB menu, repeat the previous step again. Once you are in Ubuntu, open terminal and run
+```sh
+# sudo apt install vim
+sudo vim /etc/default/grub
+```
+Again, qdd `nomodeset` after `quite splash` and save it for permanent change.
+```sh
+GRUB_CMDLINE_LINUX_DEFAULT="quiet splash nomodeset"
+```
+
+
 **Rapid Storage Technology**
 
 (TBD)
